@@ -1,23 +1,291 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+
+
+    <!-- Schema.org HomeGoodsStore/LocalBusiness 마크업(JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HomeGoodsStore",
+      "name": "덕소 인테리어",
+      "image": "https://도메인/덕소인테리어로고.png",
+      "url": "https://도메인/덕소인테리어",
+      "telephone": "031-123-4567",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "경기도 남양주시 와부읍 ○○로 ○○",
+        "addressLocality": "남양주시 와부읍",
+        "addressRegion": "경기",
+        "postalCode": "12200",
+        "addressCountry": "KR"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "남양주시 와부읍"
+      },
+      "priceRange": "₩₩₩",
+      "description": "덕소 인테리어 전문 서비스 – 아파트, 주택 리모델링 견적, 비용, 시공사례, 내돈내산 후기 제공"
+    }
+    </script>
+
+    <style>
+      /* 부드러운 색감, 명확한 계층 구조, 텍스트 가독성 향상 */
+      body { font-family: 'Noto Sans KR', sans-serif; margin: 0; padding: 0; background-color: #f8fbfd; color: #333; line-height: 1.8; font-size: 16px; }
+      header { background: #ffffff; padding: 40px 20px; text-align: center; border-bottom: 5px solid #e0eaf4; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+      header h1 { font-size: 3rem; color: #1f4e79; margin: 0; font-weight: 900; }
+      header p { font-size: 1.2rem; color: #555; margin-top: 10px; }
+      section { max-width: 900px; margin: 25px auto; padding: 30px; background: #ffffff; border-radius: 15px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05); }
+      h2, h3 { color: #1f4e79; border-bottom: 2px solid #e0eaf4; padding-bottom: 10px; margin-top: 30px; font-weight: 700; }
+      h2 { font-size: 2.2rem; }
+      h3 { font-size: 1.6rem; margin-top: 25px; border-bottom: none; }
+      p, li, dd, dt, table { font-size: 1rem; color: #444; }
+      ul, ol { padding-left: 25px; margin-bottom: 20px; }
+      li { margin-bottom: 10px; }
+      table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 20px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+      th, td { border: none; padding: 15px; text-align: left; background-color: #ffffff; }
+      th { background-color: #f0f4f8; color: #1f4e79; font-weight: 700; border-bottom: 1px solid #e0eaf4; }
+      td { border-bottom: 1px solid #e0eaf4; }
+      tr:last-child td { border-bottom: none; }
+      tr:hover td { background-color: #fbfdff; }
+      a { color: #2a73cc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .btn-cta { display: inline-block; padding: 16px 35px; background: #4285f4; color: #fff; font-weight: 700; border: none; border-radius: 30px; box-shadow: 0 6px 12px rgba(66, 133, 244, 0.3); transition: background-color 0.3s ease, transform 0.2s ease; cursor: pointer; text-decoration: none; text-align: center; font-size: 1.1rem; }
+      .btn-cta:hover { background: #3367d6; transform: translateY(-2px); box-shadow: 0 8px 16px rgba(66, 133, 244, 0.4); }
+      .btn-secondary { background: #e0eaf4; color: #1f4e79; box-shadow: none; }
+      .btn-secondary:hover { background: #d0dbe9; color: #1f4e79; transform: translateY(-2px); }
+      .anchor { display: block; position: relative; top: -100px; visibility: hidden; }
+      .highlight { background-color: #fffac8; padding: 3px; border-radius: 4px; font-weight: 700; }
+      .local-keywords { font-size: 0.9rem; color: #777; margin-top: 20px; padding: 15px; background-color: #f5f5f5; border-radius: 8px; line-height: 1.6; }
+      .local-keywords span { display: inline-block; margin: 3px 6px; }
+      nav { max-width: 900px; margin: 20px auto; background: #ffffff; border-radius: 15px; padding: 20px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); }
+      nav ul { display: flex; flex-wrap: wrap; justify-content: space-around; list-style: none; padding: 0; margin: 0; }
+      nav li { margin: 8px 10px; }
+      nav a { font-weight: 600; font-size: 1.05rem; color: #1f4e79; transition: color 0.3s ease; }
+      nav a:hover { color: #4285f4; text-decoration: none; }
+      form label { display: block; margin-bottom: 8px; font-weight: 600; color: #555; }
+      form input[type="text"], form input[type="tel"], form select, form textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 1rem; }
+      form textarea { resize: vertical; }
+
+      /* 반응형 디자인 */
+      @media (max-width: 768px) {
+        body { padding: 10px; }
+        header { padding: 30px 15px; }
+        header h1 { font-size: 2.2rem; }
+        header p { font-size: 1rem; }
+        section { padding: 20px; margin: 15px auto; }
+        h2 { font-size: 1.8rem; }
+        nav ul { flex-direction: column; }
+        nav li { margin: 5px 0; }
+        .btn-cta { width: 100%; padding: 14px 0; font-size: 1rem; }
+      }
+    </style>
+</head>
+
+<body>
+    <!-- 1. 헤더 및 주요 CTA 영역 -->
+    <header>
+        <h1>덕소 인테리어 최적의 솔루션: 비용, 견적, 후기 분석 (2026)</h1>
+        <p>남양주시 덕소 지역 아파트/주택 인테리어 및 리모델링 전문가. 합리적인 가격과 검증된 품질로 성공적인 시공을 안내합니다.</p>
+        <div style="margin-top: 20px;">
+            <a class="btn-cta" href="#contact-form">무료 견적 상담 받기</a>
+        </div>
+    </header>
+
+    <!-- 2. 네비게이션 (SEO 및 Dwell Time 향상) -->
+    <nav aria-label="페이지 내 이동">
+        <ul>
+            <li><a href="#introduction">덕소 인테리어 개요</a></li>
+            <li><a href="#price-guide">2026년 인테리어 비용 분석</a></li>
+            <li><a href="#service-types">시공 유형 및 차이점</a></li>
+            <li><a href="#local-analysis">덕소 아파트 맞춤형 시공 가이드</a></li>
+            <li><a href="#checklist">성공적인 리모델링 체크리스트</a></li>
+            <li><a href="#faq">자주 묻는 질문 (FAQ)</a></li>
+        </ul>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+    <!-- 3. 핵심 콘텐츠 시작 -->
+    <section id="introduction">
+        <span class="anchor" id="introduction-anchor"></span>
+        <h2>덕소 인테리어, 왜 신중하게 선택해야 할까?</h2>
+        <p>남양주 <span class="highlight">덕소 지역은 한강변을 따라 형성된 주거 환경과 비교적 연식이 있는 아파트 단지들이 많아</span> 인테리어 수요가 높습니다. 단순한 미관 개선을 넘어, 주거 환경의 질을 높이고 부동산 가치를 상승시키기 위해 <span class="highlight">덕소 인테리어</span>를 고려하는 분들이 많습니다.</p>
+        <p>특히 덕소 지역은 와부읍, 도곡리, 삼패리, 팔당리 등 넓은 지역에 걸쳐 다양한 주거 형태가 공존하며, 아파트 리모델링 외에도 주택 인테리어 수요가 꾸준합니다. 하지만 인테리어는 전문가의 역량, 자재 선택, 견적의 투명성이 매우 중요한 분야입니다. <span class="highlight">덕소 인테리어 추천 업체</span>를 찾거나, <span class="highlight">저렴한곳</span>을 찾다가 발생할 수 있는 부실 시공의 위험을 피하기 위해서는 꼼꼼한 사전 조사가 필수입니다. 본 가이드는 2026년 기준 <span class="highlight">덕소 인테리어 평균 비용</span>부터 <span class="highlight">내돈내산 후기</span> 분석, 그리고 <span class="highlight">성공적인 리모델링을 위한 체크리스트</span>까지 상세하게 다룹니다.</p>
+
+        <h3>덕소 인테리어 시장의 특징</h3>
+        <p>덕소는 주택 시장의 변화와 함께 <span class="highlight">리모델링 수요가 증가하는 추세</span>입니다. 특히 <span class="highlight">덕소 강변 대림 e-편한세상, 덕소 한강 우성아파트, 덕소 한신아파트</span> 등 주요 아파트 단지들은 10~20년 이상 경과하여 노후화된 부분을 개선하고자 하는 니즈가 높습니다. <span class="highlight">샷시 교체, 욕실 리모델링, 베란다 확장</span> 등 필수적인 기능 개선 공사가 많습니다.</p>
+        <ul>
+            <li>**노후 아파트 리모델링:** 단열 문제 해결, 수도 배관 교체 등 기초 공사가 중요.</li>
+            <li>**지역 특성 반영:** 한강 조망을 고려한 거실 및 베란다 디자인.</li>
+            <li>**합리적인 가격 경쟁:** <span class="highlight">덕소 인테리어 저렴한곳</span>을 찾는 수요가 많지만, <span class="highlight">가격 비교</span> 시 품질을 우선순위에 두어야 함.</li>
+        </ul>
+
+        <a class="btn-cta btn-secondary" href="#price-guide">2026년 최신 견적 가이드 보기</a>
+    </section>
+
+    <!-- 4. 인테리어 비용 분석 (SEO 키워드 집중 구간: 가격, 비용, 견적, 평균, 얼마, 싼곳) -->
+    <section id="price-guide">
+        <span class="anchor" id="price-guide-anchor"></span>
+        <h2>2026년 덕소 인테리어 평균 비용 분석 및 견적 가이드</h2>
+        <p>인테리어 <span class="highlight">비용</span>은 범위가 매우 넓습니다. <span class="highlight">덕소 인테리어 평균 금액</span>을 산정할 때는 시공 범위(전체 vs. 부분), 자재 등급, 평수, 그리고 업체의 시공 능력에 따라 크게 달라집니다. <span class="highlight">저렴한곳</span>을 찾더라도 기초 공사가 부실하면 재시공 <span class="highlight">비용</span>이 발생할 수 있으므로, 초기 <span class="highlight">견적</span>을 꼼꼼히 확인해야 합니다.</p>
+
+        <h3>평수별 인테리어 예상 견적표 (2026년 기준)</h3>
+        <p>다음 표는 <span class="highlight">덕소 지역</span> 아파트 리모델링 <span class="highlight">평균 비용</span>을 나타냅니다. 이는 일반적인 자재 및 시공 범위(주방, 욕실 2개, 거실, 방 3개)를 기준으로 한 <span class="highlight">예상 가격</span>이며, 변동될 수 있습니다.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>평수</th>
+                    <th>덕소 인테리어 예상 견적 (평균)</th>
+                    <th>전체 리모델링 (샷시 포함)</th>
+                    <th>부분 리모델링 (주방+욕실)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>20평대 (예: 덕소 한강 우성 24평)</td>
+                    <td>2,000만원 ~ 3,500만원</td>
+                    <td>3,500만원 ~ 5,000만원</td>
+                    <td>1,200만원 ~ 2,000만원</td>
+                </tr>
+                <tr>
+                    <td>30평대 (예: 덕소 강변 대림 32평)</td>
+                    <td>3,000만원 ~ 4,500만원</td>
+                    <td>4,500만원 ~ 7,000만원</td>
+                    <td>1,500만원 ~ 2,500만원</td>
+                </tr>
+                <tr>
+                    <td>40평대 이상</td>
+                    <td>4,000만원 ~ 6,000만원</td>
+                    <td>6,000만원 ~ 9,000만원+</td>
+                    <td>2,000만원 ~ 3,500만원</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>※ 참고: 위 <span class="highlight">가격</span>은 2026년 자재 및 인건비 상승률을 반영한 추정치이며, <span class="highlight">정확한 견적</span>은 현장 방문 상담 후 결정됩니다.</p>
+
+        <h3>인테리어 비용을 결정하는 주요 변수 (저렴한곳 vs 프리미엄)</h3>
+        <ol>
+            <li>**시공 범위:** <span class="highlight">전체 리모델링</span>은 철거부터 마감까지 모든 과정을 포함하여 <span class="highlight">비용</span>이 높지만, <span class="highlight">부분 인테리어</span>는 필요한 곳만 선택적으로 시공하여 <span class="highlight">저렴한 가격</span>에 가능합니다.</li>
+            <li>**자재 선택:** 국산 브랜드(KCC, LG하우시스)부터 수입 브랜드(Hanssem, Kohler)까지 <span class="highlight">자재 등급</span>에 따라 <span class="highlight">금액</span> 차이가 큽니다.</li>
+            <li>**업체 규모 및 경력:** <span class="highlight">덕소 인테리어</span> 전문 업체 중에서도 개인 사업자와 법인 업체, <span class="highlight">시공 경력</span>에 따라 <span class="highlight">견적</span> 차이가 발생합니다.</li>
+            <li>**추가 공사:** 샷시 교체, 베란다 확장, 시스템 에어컨 설치 등은 <span class="highlight">추가 비용</span>이 발생합니다.</li>
+        </ol>
+    </section>
+
+    <!-- 5. 서비스 유형 상세 분석 (SEO 키워드: 장점, 단점, 차이점, 추천) -->
+    <section id="service-types">
+        <span class="anchor" id="service-types-anchor"></span>
+        <h2>덕소 인테리어 시공 유형별 장단점 및 차이점 비교</h2>
+        <p>인테리어를 진행하기 전에 어떤 유형의 시공을 할지 결정하는 것이 중요합니다. 시공 범위에 따라 <span class="highlight">전체 리모델링</span>과 <span class="highlight">부분 리모델링</span>으로 나눌 수 있습니다.</p>
+
+        <h3>1. 전체 리모델링 (덕소 아파트 Full Remodeling)</h3>
+        <p>기초부터 마감까지 모든 요소를 새롭게 구성하는 방식입니다. 주로 20년 이상 노후화된 <span class="highlight">덕소 지역 아파트</span>에 <span class="highlight">추천</span>됩니다. <span class="highlight">장점</span>은 단열, 방음, 누수 등 주거 환경의 근본적인 문제점을 해결할 수 있다는 것입니다. <span class="highlight">단점</span>은 상대적으로 높은 <span class="highlight">비용</span>과 긴 공사 기간입니다.</p>
+
+        <h3>2. 부분 리모델링 (Kitchen, Bathroom, Floor Only)</h3>
+        <p>필요한 공간만 선택적으로 시공하는 방식입니다. <span class="highlight">덕소 인테리어 비용</span>을 절약하면서도 가장 효과가 큰 부분에 집중할 수 있습니다. <span class="highlight">장점</span>은 <span class="highlight">저렴한 가격</span>과 짧은 공사 기간입니다. <span class="highlight">단점</span>은 전체적인 조화가 깨질 수 있고, 노후화된 다른 부분의 문제가 남아있을 수 있다는 점입니다. <span class="highlight">내돈내산 후기</span>를 보면 <span class="highlight">부분 인테리어</span>를 통해 만족도를 높이는 사례가 많습니다.</p>
+
+        <h3>덕소 인테리어 세부 시공 항목별 추천 가이드</h3>
+        <dl>
+            <dt><strong>주방 인테리어 (Kitchen Remodeling)</strong></dt>
+            <dd>가장 많은 <span class="highlight">비용</span>과 만족도를 결정하는 핵심 공간입니다. <span class="highlight">덕소 인테리어</span>에서는 수납 공간 확보와 동선 개선이 중요하며, 2026년 트렌드는 비스포크 가전과 빌트인 가구의 통합입니다. <span class="highlight">가격 비교</span> 시 상판 자재(엔지니어드 스톤 vs 인조대리석)와 가구 등급을 확인해야 합니다.</dd>
+            <dt><strong>욕실 인테리어 (Bathroom Remodeling)</strong></dt>
+            <dd>욕실은 방수 공사가 가장 중요합니다. <span class="highlight">덕소 아파트</span>의 경우 20년 이상 노후된 곳이 많아 배관 상태 확인이 필수적입니다. <span class="highlight">평균 비용</span>은 타일 시공 범위, 위생 도기 브랜드, 젠다이 설치 여부 등에 따라 달라집니다.</dd>
+            <dt><strong>샷시 교체 및 단열 공사</strong></dt>
+            <dd>단열 성능은 주거 만족도와 난방비에 큰 영향을 미칩니다. <span class="highlight">덕소 한강변 아파트</span>의 경우 바람이 강하게 불 수 있어 샷시 선택이 중요합니다. 정부의 에너지 효율화 사업을 활용하면 <span class="highlight">비용</span>을 절감할 수 있습니다. (참조: <a href="https://www.energy.or.kr/" target="_blank" rel="noopener noreferrer">한국에너지공단</a>)</dd>
+        </dl>
+    </section>
+
+    <!-- 6. 지역 특화 정보 및 신뢰성 확보 (Local SEO + Authority) -->
+    <section id="local-analysis">
+        <span class="anchor" id="local-analysis-anchor"></span>
+        <h2>덕소 아파트 맞춤형 인테리어 시공 사례 및 가이드 (지역 집중)</h2>
+        <p>인테리어는 단순히 시공 기술뿐만 아니라 지역 특성과 아파트 단지의 특성을 이해하는 것이 중요합니다. <span class="highlight">덕소 인테리어</span> 전문 업체라면 <span class="highlight">덕소 지역</span> 아파트의 구조와 노후도를 정확히 파악하고 있어야 합니다.</p>
+
+        <h3>주요 덕소 아파트 단지별 인테리어 특이사항</h3>
+        <ul>
+            <li>**덕소 강변 대림 e-편한세상:** 준공 20년차로 샷시, 욕실 등 노후화가 진행된 곳이 많습니다. 한강 조망을 극대화하기 위한 거실 확장이 인기입니다.</li>
+            <li>**덕소 한강 우성 아파트:** 비교적 소형 평수가 많아 수납 공간 확보와 공간 활용도를 높이는 디자인이 중요합니다. <span class="highlight">부분 인테리어</span> <span class="highlight">후기</span>가 많은 단지입니다.</li>
+            <li>**덕소 쌍용 아파트:** 10년 이상 된 단지로, 주방 구조 변경을 통한 대면형 주방 선호도가 높습니다.</li>
+            <li>**덕소 현대 아파트 및 덕소 두산위브:** 와부읍 내 다른 지역에 비해 비교적 최근에 지어진 단지들이 포함되어 있어, 전체 리모델링보다는 <span class="highlight">디자인</span> 위주의 <span class="highlight">부분 시공</span>이 많습니다.</li>
+        </ul>
+
+        <p>이러한 <span class="highlight">덕소 아파트</span> 단지별 특성을 고려하지 않고 <span class="highlight">저렴한곳</span>만 찾다 보면 원하는 결과를 얻지 못할 수 있습니다. <span class="highlight">덕소 인테리어</span> 전문가는 각 단지의 구조적 특징을 이해하고 맞춤형 솔루션을 제공해야 합니다.</p>
+
+        <h3>공신력 있는 정보 출처를 활용한 인테리어 정보 탐색</h3>
+        <p>인테리어 <span class="highlight">견적</span>과 <span class="highlight">가격</span>에 대한 정확한 정보는 투명한 비교를 통해 얻을 수 있습니다. <span class="highlight">내돈내산 후기</span>나 <span class="highlight">인테리어 순위</span>를 검색할 때, 공인된 정보를 참고하는 것이 중요합니다.</p>
+        <ul>
+            <li>**국토교통부 실거래가 공개시스템:** <span class="highlight">덕소 지역</span> 아파트 매매 시 리모델링 여부가 <span class="highlight">가격</span>에 미치는 영향을 확인할 수 있습니다. (<a href="http://rt.molit.go.kr/" target="_blank" rel="noopener noreferrer">국토교통부 실거래가</a>)</li>
+            <li>**한국 소비자원:** 인테리어 관련 소비자 피해 사례 및 분쟁 해결 기준을 참고하여 <span class="highlight">덕소 인테리어 업체</span> 선정 시 주의사항을 미리 숙지할 수 있습니다. (<a href="https://www.kca.go.kr/" target="_blank" rel="noopener noreferrer">한국 소비자원</a>)</li>
+            <li>**정부 지원 사업:** <span class="highlight">덕소</span> 지자체(남양주시청)에서 제공하는 신재생에너지 보조금이나 리모델링 지원 사업을 확인하여 <span class="highlight">비용</span>을 절감할 수 있습니다. (<a href="https://www.nyj.go.kr/" target="_blank" rel="noopener noreferrer">남양주시청</a>)</li>
+            <li>**자재 전문 플랫폼:** 자재 <span class="highlight">가격</span> 정보를 투명하게 제공하는 플랫폼을 참고하여 <span class="highlight">덕소 인테리어 견적</span>의 적정성을 판단할 수 있습니다.</li>
+        </ul>
+    </section>
+
+    <!-- 7. 핵심 정보 정리 및 체크리스트 (Dwell Time & Utility) -->
+    <section id="checklist">
+        <span class="anchor" id="checklist-anchor"></span>
+        <h2>성공적인 덕소 인테리어를 위한 필수 체크리스트</h2>
+        <p>후회 없는 <span class="highlight">내돈내산</span> 인테리어를 위해 반드시 확인해야 할 사항들입니다. <span class="highlight">덕소 인테리어</span> 업체 선정 전후로 꼼꼼하게 점검하여 <span class="highlight">장점</span>을 극대화하고 <span class="highlight">단점</span>을 최소화하세요.</p>
+        <ol>
+            <li>**예산 계획 및 견적 비교:** <span class="highlight">덕소 인테리어 평균 비용</span>을 파악하고, 여러 업체의 <span class="highlight">견적</span>을 받아 <span class="highlight">가격 비교</span>를 진행하세요. <span class="highlight">저렴한곳</span>이라고 무조건 선택하기보다, 견적서의 세부 항목(자재, 인건비, 철거비 등)을 면밀히 비교합니다.</li>
+            <li>**업체 포트폴리오 및 후기 확인:** <span class="highlight">덕소 인테리어 추천 업체</span>라면 <span class="highlight">덕소 지역</span> 시공 사례를 보유하고 있어야 합니다. <span class="highlight">내돈내산 후기</span>를 통해 실제 고객 만족도를 확인하세요.</li>
+            <li>**계약서 작성 시 주의사항:** 공사 범위, 기간, 자재 사양, 하자 보수 기간, 추가 <span class="highlight">비용</span> 발생 가능성 등을 명확히 명시한 계약서를 작성합니다.</li>
+            <li>**공사 기간 및 일정 조율:** <span class="highlight">덕소 아파트</span>의 경우 주거 밀집 지역 특성상 소음 발생 시간에 제약이 있을 수 있습니다. 공사 일정을 미리 조율하고 이웃에게 사전 동의를 구하는 것이 중요합니다.</li>
+            <li>**자재 선정 및 현장 방문:** 계약 전 <span class="highlight">덕소 인테리어 업체</span>와 함께 자재 샘플을 직접 보고 선택합니다. 공사 진행 중 현장을 주기적으로 방문하여 진행 상황을 확인합니다.</li>
+        </ol>
+
+        <p>성공적인 인테리어는 전문가와의 소통에서 시작됩니다. <span class="highlight">덕소</span>의 특성을 잘 이해하는 전문가와 함께하세요.</p>
+    </section>
+
+    <!-- 8. FAQ 섹션 (Dwell Time & SEO Snippet) -->
+    <section id="faq">
+        <span class="anchor" id="faq-anchor"></span>
+        <h2>자주 묻는 질문 (FAQ) - 덕소 인테리어</h2>
+        <dl>
+            <dt>Q1: <span class="highlight">덕소 인테리어</span> <span class="highlight">평균 비용</span>은 <span class="highlight">얼마</span>인가요?</dt>
+            <dd>A: <span class="highlight">덕소 인테리어 평균 금액</span>은 평수, 시공 범위, 자재 등급에 따라 크게 달라집니다. 20평대 전체 리모델링 기준 2,000만 원~3,500만 원 선, 30평대는 3,000만 원~4,500만 원 선으로 <span class="highlight">예상</span>할 수 있습니다. <span class="highlight">정확한 견적</span>을 위해서는 현장 방문 상담이 필요합니다.</dd>
+
+            <dt>Q2: <span class="highlight">저렴한곳</span>을 찾다가 발생할 수 있는 <span class="highlight">단점</span>은 무엇인가요?</dt>
+            <dd>A: <span class="highlight">덕소 인테리어</span> <span class="highlight">싼곳</span>만 고집하면 저가 자재 사용, 미숙한 시공 기술, 계약 외 <span class="highlight">추가 비용</span> 발생, 부실한 하자 보수 등의 <span class="highlight">단점</span>이 생길 수 있습니다. <span class="highlight">가격 비교</span> 시 <span class="highlight">가성비</span>와 <span class="highlight">업체 신뢰도</span>를 함께 고려해야 합니다.</dd>
+
+            <dt>Q3: <span class="highlight">덕소 아파트</span> <span class="highlight">리모델링</span> 시 <span class="highlight">장점</span>이 극대화되는 시공 항목은?</dt>
+            <dd>A: <span class="highlight">덕소</span> 지역은 연식이 있는 아파트가 많아 <span class="highlight">샷시 교체</span>와 <span class="highlight">욕실 리모델링</span>이 주거 만족도 향상에 큰 <span class="highlight">장점</span>을 가져옵니다. 단열, 방음 효과 개선과 함께 누수 문제도 해결할 수 있습니다.</dd>
+
+            <dt>Q4: 인테리어 <span class="highlight">추천</span> 시공 시기는 언제인가요?</dt>
+            <dd>A: <span class="highlight">덕소 인테리어</span>는 성수기(봄, 가을)를 피해 겨울이나 여름 비수기에 시공하면 <span class="highlight">비용</span>을 절감할 수 있고, 시공 인력 수급이 원활하여 더욱 꼼꼼한 시공을 기대할 수 있습니다.</dd>
+        </dl>
+    </section>
+
+    <!-- 9. 연락처 및 견적 문의 섹션 (Dwell Time & Lead Generation) -->
+    <section id="contact-form">
+        <span class="anchor" id="contact-anchor"></span>
+        <h2>덕소 인테리어 무료 견적 상담 요청</h2>
+        <p>고객님의 <span class="highlight">덕소 아파트</span> 맞춤형 인테리어를 위한 상세 <span class="highlight">견적</span>을 받아보세요. 꼼꼼한 상담을 통해 합리적인 <span class="highlight">가격</span>으로 최고의 결과물을 약속드립니다.</p>
+        <form action="/submit" method="POST" style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #e0eaf4; border-radius: 10px; background-color: #fcfcfc;">
+            <label for="name">이름<span style="color:red;">*</span></label>
+            <input type="text" id="name" name="name" required placeholder="예: 홍길동" />
+
+            <label for="phone">연락처<span style="color:red;">*</span></label>
+            <input type="tel" id="phone" name="phone" required placeholder="010-1234-5678" pattern="[0-9\-]+" />
+
+            <label for="move-type">인테리어 시공 유형<span style="color:red;">*</span></label>
+            <select id="move-type" name="move_type" required>
+                <option value="">시공 유형 선택</option>
+                <option value="전체 리모델링">전체 리모델링 (샷시 포함)</option>
+                <option value="부분 리모델링">부분 리모델링 (주방+욕실 등)</option>
+                <option value="특정 공간">특정 공간 인테리어 (방, 거실 등)</option>
+                <option value="상담">단순 상담 요청</option>
+            </select>
+
+            <label for="address">시공 주소 (예: 남양주시 와부읍 덕소리 ○○아파트)</label>
+            <input type="text" id="address" name="address" placeholder="예: 덕소 강변 대림 e-편한세상" />
+
+            <label for="message">추가 요청 사항 및 문의 내용</label>
+            <textarea id="message" name="message" rows="5" placeholder="예: 20평대, 2026년 3월 예정, 주방 확장 희망"></textarea>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <button type="submit" class="btn-cta">견적 문의 보내기</button>
+            </div>
+        </form>
+    </section>
+
+ 
+
+
+  
